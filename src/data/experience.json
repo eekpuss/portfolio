@@ -1,0 +1,98 @@
+{
+    "work": [
+      {
+        "title": "Quality Assurance SPF",
+        "company": "PT Damar Gayatri Jaya (Medion Group)",
+        "location": "Bandung Barat, Indonesia",
+        "start_date": "02/2022",
+        "end_date": "Current",
+        "icon": "briefcase",
+        "description": "Leading quality assurance initiatives in pharmaceutical manufacturing with focus on data-driven process improvement.",
+        "responsibilities": [
+          "Executed qualification and validation of equipment and production processes to ensure compliance with pharmaceutical standards, facilitating seamless manufacturing operations.",
+          "Oversaw change control procedures by preparing and evaluating change documentation, minimizing risks to product quality.",
+          "Conducted environmental monitoring of production areas, including temperature, humidity, and cleanliness, to maintain conditions in accordance with GMP (Good Manufacturing Practice) standards.",
+          "Managed process deviations through root cause analysis and corrective actions, ensuring swift and effective resolutions to prevent recurrence.",
+          "Coordinated periodic calibration of measuring instruments, guaranteeing measurement accuracy to support reliable production outcomes.",
+          "Led internal audits to assess adherence to standard operating procedures, providing actionable recommendations that enhanced the efficiency of the quality system."
+        ],
+        "technical_contributions": [
+          "Developed a machine learning model using Python (Scikit-learn) for predictive maintenance, increasing production uptime by 15%.",
+          "Designed a Power BI dashboard for real-time quality metrics monitoring, reducing QA reporting time by 50% (from 2 days to 4 hours).",
+          "Performed microbiological data analysis using Python to ensure product compliance with quality standards, achieving a 98% compliance rate."
+        ],
+        "achievements": [
+          "Reduced quality investigation time by 40% through implementation of standardized analysis templates",
+          "Recognized for improved audit preparedness with zero critical observations in external audits",
+          "Streamlined change control process, reducing average processing time by 30%"
+        ]
+      },
+      {
+        "title": "Freelance Data Analyst",
+        "company": "Self-Employed",
+        "location": "Bandung, Indonesia",
+        "start_date": "01/2022",
+        "end_date": "12/2023",
+        "icon": "laptop-code",
+        "description": "Provided data analysis services to local businesses, focusing on marketing strategy optimization and sales forecasting.",
+        "responsibilities": [
+          "Analyzed sales data for local SMEs in Bandung using Python and Excel, delivering marketing strategy recommendations that boosted revenue by 20%.",
+          "Developed data visualizations to identify sales trends, enabling clients to make informed, data-driven decisions."
+        ],
+        "technical_contributions": [
+          "Built customized data processing pipelines using Python to handle diverse data sources",
+          "Created interactive dashboards in Excel and Power BI for non-technical stakeholders"
+        ],
+        "achievements": [
+          "Successfully increased client revenue by an average of 20% through data-driven recommendations",
+          "Developed reusable analysis templates that reduced project turnaround time"
+        ]
+      },
+      {
+        "title": "Quality Assurance Intern",
+        "company": "PT Perhutani Pine Chemical Industry",
+        "location": "Pemalang",
+        "start_date": "06/2020",
+        "end_date": "08/2020",
+        "icon": "flask",
+        "description": "Assisted the quality control department in ensuring compliance with quality standards for chemical products.",
+        "responsibilities": [
+          "Analyzed chemical production processes to ensure compliance with industry standards, supporting quality control for wood-based products.",
+          "Assisted in quality testing and documentation, contributing to improvements in production workflows.",
+          "Conducted performance tests under various conditions to assess stability and responsiveness of products."
+        ],
+        "technical_contributions": [
+          "Developed Excel templates for quality data tracking and analysis",
+          "Created visualization tools for monitoring critical process parameters"
+        ],
+        "achievements": [
+          "Identified 5 critical quality risk factors in the production process",
+          "Received commendation for detailed documentation and recommendation report"
+        ]
+      }
+    ],
+    "education": [
+      {
+        "degree": "Bachelor of Science",
+        "field": "Chemical Engineering",
+        "institution": "Universitas Ahmad Dahlan",
+        "location": "Yogyakarta, Indonesia",
+        "graduation_date": "10/2021",
+        "icon": "graduation-cap",
+        "gpa": "3.47",
+        "honors": "CumLaude",
+        "relevant_coursework": [
+          "Process Optimization",
+          "Data Analysis",
+          "Chemical Process Simulation",
+          "Quality Control",
+          "Statistical Methods",
+          "Process Design"
+        ],
+        "thesis": {
+          "title": "Optimization of Pharmaceutical Production Processes Using Statistical Analysis",
+          "description": "Applied statistical methods to identify critical process parameters affecting product quality in pharmaceutical manufacturing."
+        }
+      }
+    ]
+  }

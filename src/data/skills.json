@@ -1,0 +1,78 @@
+{
+    "technical": [
+      {
+        "name": "Python",
+        "level": 90,
+        "category": "Programming",
+        "icon": "python.svg",
+        "tools": ["Pandas", "NumPy", "Scikit-learn", "Matplotlib", "Seaborn"]
+      },
+      {
+        "name": "SQL",
+        "level": 85,
+        "category": "Data",
+        "icon": "sql.svg",
+        "tools": ["MySQL", "PostgreSQL", "SQLite", "Query Optimization"]
+      },
+      {
+        "name": "Power BI",
+        "level": 90,
+        "category": "Visualization",
+        "icon": "powerbi.svg",
+        "tools": ["DAX", "Power Query", "Report Building", "Dashboard Design"]
+      },
+      {
+        "name": "Machine Learning",
+        "level": 80,
+        "category": "Data Science",
+        "icon": "machine-learning.svg",
+        "tools": ["Classification", "Regression", "Clustering", "Feature Engineering"]
+      },
+      {
+        "name": "Excel",
+        "level": 95,
+        "category": "Data",
+        "icon": "excel.svg",
+        "tools": ["Pivot Tables", "VBA", "Power Pivot", "Advanced Formulas"]
+      },
+      {
+        "name": "Quality Assurance",
+        "level": 95,
+        "category": "Domain",
+        "icon": "qa.svg",
+        "tools": ["GMP Standards", "Internal Auditing", "Process Validation", "SOP Development"]
+      }
+    ],
+    "soft": [
+      {
+        "name": "Problem Solving",
+        "level": 95,
+        "description": "Analytical approach to complex problems with effective solutions"
+      },
+      {
+        "name": "Leadership",
+        "level": 85,
+        "description": "Experience leading technical teams and projects"
+      },
+      {
+        "name": "Communication",
+        "level": 90,
+        "description": "Clear and effective technical and business communication"
+      },
+      {
+        "name": "Teamwork",
+        "level": 90,
+        "description": "Collaborative approach and effective team integration"
+      }
+    ],
+    "chartData": {
+      "labels": ["Python", "SQL", "Power BI", "Machine Learning", "Quality Assurance", "Process Optimization"],
+      "datasets": [
+        {
+          "label": "Skill Level",
+          "data": [90, 85, 90, 80, 95, 85],
+          "fill": true
+        }
+      ]
+    }
+  }

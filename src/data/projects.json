@@ -1,0 +1,46 @@
+{
+    "projects": [
+      {
+        "id": 1,
+        "title": "Predictive Equipment Failure Model",
+        "category": "Machine Learning",
+        "tech": ["Python", "Scikit-learn", "Pandas", "NumPy"],
+        "description": "Developed a machine learning model using Python (Scikit-learn) to predict equipment failures, increasing production uptime by 15%.",
+        "challenge": "Production equipment failures were causing significant downtime, resulting in lost productivity and increased costs. Traditional maintenance schedules were inefficient and often resulted in either premature maintenance or equipment failure before scheduled maintenance.",
+        "solution": "Created a machine learning model using Random Forest algorithm to analyze historical equipment data, including vibration patterns, temperature readings, and performance metrics. Implemented feature engineering to extract meaningful patterns from raw sensor data and deployed the model to predict potential failures up to 72 hours in advance.",
+        "results": "Increased production uptime by 15%, reduced maintenance costs by 22%, and improved overall equipment effectiveness (OEE) by 8%. The model achieved 87% accuracy in predicting equipment failures, allowing for proactive maintenance scheduling.",
+        "image": "predictive-model.jpg",
+        "date": "March 2024 - December 2024",
+        "highlight_value": "15%",
+        "highlight_label": "Uptime Increase"
+      },
+      {
+        "id": 2,
+        "title": "QA Manufacturing Dashboard",
+        "category": "Data Visualization",
+        "tech": ["Power BI", "DAX", "SQL", "Excel"],
+        "description": "Designed a Power BI dashboard for real-time quality metrics monitoring, reducing QA reporting time by 50%.",
+        "challenge": "Quality metrics reporting was manual and time-consuming, requiring data from multiple sources to be compiled into Excel spreadsheets. Reports were generated once every two days, which limited the ability to respond quickly to emerging quality issues.",
+        "solution": "Created a Power BI dashboard that automatically pulls data from multiple sources including the production database, equipment sensors, and quality control records. Implemented DAX measures to calculate KPIs including defect rates, compliance percentages, and trend analysis.",
+        "results": "Reduced reporting time from 2 days to just 4 hours (50% reduction). Enabled real-time monitoring of quality metrics, allowing for immediate response to quality issues. Improved data visualization made it easier for management to identify trends and make data-driven decisions.",
+        "image": "qa-dashboard.jpg",
+        "date": "September 2023 - December 2023",
+        "highlight_value": "50%",
+        "highlight_label": "Time Reduction"
+      },
+      {
+        "id": 3,
+        "title": "Product Quality Data Analysis",
+        "category": "Data Analysis",
+        "tech": ["Python", "SQL", "Pandas", "Matplotlib"],
+        "description": "Analyzed quality data with SQL and Python, reducing defect rates by 10% through actionable insights.",
+        "challenge": "The production facility was experiencing higher than industry-average defect rates, but the root causes were unclear. Existing analysis was limited to basic reporting without deeper pattern identification.",
+        "solution": "Performed comprehensive analysis of quality data using SQL to extract and clean data from multiple database sources. Used Python for statistical analysis to identify correlations between process parameters and defect rates. Created visualizations to highlight key patterns and presented findings to management team.",
+        "results": "Identified three key process parameters that strongly correlated with defect rates. Implementation of recommended process adjustments led to a 10% reduction in overall defect rates within three months. Analysis also revealed optimal operating conditions that were documented in updated standard operating procedures.",
+        "image": "quality-analysis.jpg",
+        "date": "January 2024 - April 2024",
+        "highlight_value": "10%",
+        "highlight_label": "Defect Reduction"
+      }
+    ]
+  }
