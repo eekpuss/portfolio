@@ -1,15 +1,17 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FaQuoteLeft, FaQuoteRight, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Image from 'next/image';
 
 export default function Testimonials() {
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [testimonials, setTestimonials] = useState([]);
   const [industries, setIndustries] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(0);
   const testimonialsRef = useRef(null);
+  const autoplayRef = useRef(null);
   
   useEffect(() => {
     const fetchTestimonials = async () => {
@@ -25,38 +27,140 @@ export default function Testimonials() {
     fetchTestimonials();
   }, []);
   
+  useEffect(() => {
+    // Auto rotate testimonials
+    if (testimonials.length === 0) return;
+    
+    const startAutoplay = () => {
+      autoplayRef.current = setInterval(() => {
+        setDirection(1);
+        setCurrentIndex((prevIndex) => 
+          prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
+        );
+      }, 8000);
+    };
+    
+    startAutoplay();
+    
+    // Reset autoplay on user interaction
+    const resetAutoplay = () => {
+      if (autoplayRef.current) {
+        clearInterval(autoplayRef.current);
+        startAutoplay();
+      }
+    };
+    
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        clearInterval(autoplayRef.current);
+      } else {
+        startAutoplay();
+      }
+    });
+    
+    // Cleanup
+    return () => {
+      clearInterval(autoplayRef.current);
+      document.removeEventListener('visibilitychange', resetAutoplay);
+    };
+  }, [testimonials.length]);
+  
   const nextTestimonial = () => {
     if (testimonials.length === 0) return;
     
+    setDirection(1);
     setCurrentIndex((prevIndex) => 
       prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
     );
+    
+    // Reset autoplay
+    if (autoplayRef.current) {
+      clearInterval(autoplayRef.current);
+      autoplayRef.current = setInterval(() => {
+        setDirection(1);
+        setCurrentIndex((prevIndex) => 
+          prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
+        );
+      }, 8000);
+    }
   };
   
   const prevTestimonial = () => {
     if (testimonials.length === 0) return;
     
+    setDirection(-1);
     setCurrentIndex((prevIndex) => 
       prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1
     );
+    
+    // Reset autoplay
+    if (autoplayRef.current) {
+      clearInterval(autoplayRef.current);
+      autoplayRef.current = setInterval(() => {
+        setDirection(1);
+        setCurrentIndex((prevIndex) => 
+          prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
+        );
+      }, 8000);
+    }
   };
   
-  // Auto rotate testimonials
-  useEffect(() => {
-    if (testimonials.length === 0) return;
-    
-    const interval = setInterval(() => {
-      nextTestimonial();
-    }, 8000);
-    
-    return () => clearInterval(interval);
-  }, [testimonials.length]);
+  const sliderVariants = {
+    enter: (direction) => ({
+      x: direction > 0 ? '100%' : '-100%',
+      opacity: 0
+    }),
+    center: {
+      x: 0,
+      opacity: 1
+    },
+    exit: (direction) => ({
+      x: direction < 0 ? '100%' : '-100%',
+      opacity: 0
+    })
+  };
+  
+  const dotVariants = {
+    inactive: { width: '8px', backgroundColor: 'var(--bg-tertiary)' },
+    active: { width: '24px', backgroundColor: 'var(--primary-color)' }
+  };
+  
+  const industryVariants = {
+    initial: { opacity: 0, y: 20 },
+    animate: (i) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: 0.3 + (i * 0.1),
+        duration: 0.5
+      }
+    }),
+    hover: {
+      scale: 1.05,
+      boxShadow: '0 10px 15px rgba(0, 0, 0, 0.1)',
+      transition: { duration: 0.3 }
+    }
+  };
+  
+  if (testimonials.length === 0) {
+    return (
+      <section className="py-20 bg-background-secondary relative overflow-hidden">
+        <div className="container">
+          <div className="flex flex-col items-center justify-center min-h-[300px]">
+            <div className="loader"></div>
+            <p className="mt-4 text-text-secondary">Loading testimonials...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
   
   return (
     <section className="py-20 bg-background-secondary relative overflow-hidden">
       {/* Decorative elements */}
-      <div className="absolute top-0 left-0 w-1/3 h-1/3 bg-gradient-radial from-primary/5 to-transparent opacity-30 blur-3xl"></div>
-      <div className="absolute bottom-0 right-0 w-1/3 h-1/3 bg-gradient-radial from-secondary/5 to-transparent opacity-30 blur-3xl"></div>
+      <div className="absolute top-0 left-0 w-1/3 h-1/3 bg-gradient-radial from-primary/10 to-transparent opacity-30 blur-3xl"></div>
+      <div className="absolute bottom-0 right-0 w-1/3 h-1/3 bg-gradient-radial from-secondary/10 to-transparent opacity-30 blur-3xl"></div>
+      <div className="absolute inset-0 background-dots opacity-5 pointer-events-none"></div>
       
       <div className="container relative z-10">
         <motion.div 
@@ -76,90 +180,115 @@ export default function Testimonials() {
         <div className="max-w-4xl mx-auto relative" ref={testimonialsRef}>
           {/* Testimonial Cards */}
           <div className="overflow-hidden relative h-[400px] md:h-[320px]">
-            {testimonials.map((testimonial, index) => (
+            <AnimatePresence custom={direction} initial={false} mode="wait">
               <motion.div
-                key={testimonial.id}
-                className={`absolute w-full h-full transition-all duration-500 ${
-                  index === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
-                }`}
-                initial={{ opacity: 0, x: 100 }}
-                animate={{ 
-                  opacity: index === currentIndex ? 1 : 0,
-                  x: index === currentIndex ? 0 : 100
+                key={testimonials[currentIndex].id}
+                className="absolute w-full h-full"
+                custom={direction}
+                variants={sliderVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{
+                  x: { type: 'spring', stiffness: 300, damping: 30 },
+                  opacity: { duration: 0.2 }
                 }}
-                transition={{ duration: 0.5 }}
               >
-                <div className="card p-8 h-full">
+                <div className="card glass-effect p-8 h-full">
                   <div className="flex flex-col h-full">
                     <div className="flex-1">
-                      <div className="text-primary mb-4">
-                        <FaQuoteLeft className="w-8 h-8 opacity-30" />
+                      <div className="text-primary mb-4 opacity-80">
+                        <FaQuoteLeft className="w-8 h-8" />
                       </div>
                       <p className="text-text-secondary text-lg italic mb-6">
-                        {testimonial.text}
+                        {testimonials[currentIndex].text}
                       </p>
                       <div className="text-right">
-                        <FaQuoteRight className="w-8 h-8 text-primary opacity-30 ml-auto" />
+                        <FaQuoteRight className="w-8 h-8 text-primary opacity-80 ml-auto" />
                       </div>
                     </div>
                     
                     <div className="flex items-center mt-6 pt-6 border-t border-border-color">
-                      <div className="w-16 h-16 rounded-full overflow-hidden mr-4 bg-background-secondary border-2 border-primary/20">
-                        {/* Fallback image jika belum ada */}
+                      <div className="w-16 h-16 rounded-full overflow-hidden mr-4 bg-bg-secondary border-2 border-primary/20 flex-shrink-0">
+                        {/* Fallback if image is not available */}
                         <div className="w-full h-full bg-gradient-to-r from-primary/30 to-secondary/30 flex items-center justify-center text-white text-xl font-bold">
-                          {testimonial.name.charAt(0)}
+                          {testimonials[currentIndex].name.charAt(0)}
                         </div>
                       </div>
                       <div>
-                        <h4 className="font-bold">{testimonial.name}</h4>
-                        <p className="text-primary text-sm">{testimonial.role}</p>
-                        <p className="text-text-secondary text-sm">{testimonial.company}</p>
+                        <h4 className="font-bold text-text-primary">{testimonials[currentIndex].name}</h4>
+                        <p className="text-primary text-sm">{testimonials[currentIndex].role}</p>
+                        <p className="text-text-secondary text-sm">{testimonials[currentIndex].company}</p>
                       </div>
                       <div className="ml-auto">
-                        <span className="px-3 py-1 bg-background rounded-full text-xs text-text-secondary">
-                          {testimonial.industry}
-                        </span>
+                        <motion.span 
+                          className="px-3 py-1 bg-background rounded-full text-xs text-text-secondary border border-border-color"
+                          whileHover={{ 
+                            backgroundColor: 'var(--primary-color)',
+                            color: '#fff',
+                            scale: 1.05
+                          }}
+                        >
+                          {testimonials[currentIndex].industry}
+                        </motion.span>
                       </div>
                     </div>
                   </div>
                 </div>
               </motion.div>
-            ))}
+            </AnimatePresence>
           </div>
           
           {/* Navigation Buttons */}
           <div className="flex justify-between mt-8">
-            <button 
+            <motion.button 
               onClick={prevTestimonial}
-              className="w-10 h-10 rounded-full bg-background flex items-center justify-center text-text-secondary hover:bg-primary hover:text-white transition-colors"
+              className="w-10 h-10 rounded-full bg-background flex items-center justify-center text-text-secondary border border-border-color"
+              whileHover={{ 
+                scale: 1.1, 
+                backgroundColor: 'var(--primary-color)', 
+                color: '#fff',
+                borderColor: 'var(--primary-color)'
+              }}
+              whileTap={{ scale: 0.95 }}
               aria-label="Previous testimonial"
             >
               <FaChevronLeft />
-            </button>
+            </motion.button>
             
             {/* Indicators */}
             <div className="flex items-center gap-2">
               {testimonials.map((_, index) => (
-                <button
+                <motion.button
                   key={index}
-                  onClick={() => setCurrentIndex(index)}
-                  className={`w-3 h-3 rounded-full transition-all ${
-                    index === currentIndex 
-                      ? 'bg-primary w-6' 
-                      : 'bg-background-accent'
-                  }`}
+                  onClick={() => {
+                    setDirection(index > currentIndex ? 1 : -1);
+                    setCurrentIndex(index);
+                  }}
+                  className="h-3 rounded-full bg-bg-tertiary"
+                  variants={dotVariants}
+                  animate={index === currentIndex ? 'active' : 'inactive'}
+                  transition={{ duration: 0.3 }}
                   aria-label={`Go to testimonial ${index + 1}`}
+                  initial={false}
                 />
               ))}
             </div>
             
-            <button 
+            <motion.button 
               onClick={nextTestimonial}
-              className="w-10 h-10 rounded-full bg-background flex items-center justify-center text-text-secondary hover:bg-primary hover:text-white transition-colors"
+              className="w-10 h-10 rounded-full bg-background flex items-center justify-center text-text-secondary border border-border-color"
+              whileHover={{ 
+                scale: 1.1, 
+                backgroundColor: 'var(--primary-color)', 
+                color: '#fff',
+                borderColor: 'var(--primary-color)'
+              }}
+              whileTap={{ scale: 0.95 }}
               aria-label="Next testimonial"
             >
               <FaChevronRight />
-            </button>
+            </motion.button>
           </div>
         </div>
         
@@ -177,18 +306,20 @@ export default function Testimonials() {
           
           <motion.div 
             className="flex flex-wrap justify-center gap-4"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial="initial"
+            whileInView="animate"
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
           >
-            {['Pharmaceutical', 'Manufacturing', 'Technology', 'Retail', 'Education'].map((industry) => (
-              <div 
+            {industries.map((industry, i) => (
+              <motion.div 
                 key={industry}
-                className="px-4 py-2 bg-background rounded-lg text-text-secondary border border-border-color hover:border-primary/30 transition-colors"
+                className="px-4 py-2 bg-background rounded-lg text-text-secondary border border-border-color backdrop-filter backdrop-blur-sm"
+                variants={industryVariants}
+                custom={i}
+                whileHover="hover"
               >
                 {industry}
-              </div>
+              </motion.div>
             ))}
           </motion.div>
         </div>

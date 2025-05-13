@@ -1,9 +1,9 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
+import { useTheme } from '@/context/ThemeContext';
 import Particles from 'react-particles';
 import { loadSlim } from "tsparticles-slim";
-import { useTheme } from '@/context/ThemeContext';
 
 export default function ParticlesBackground() {
   const { theme } = useTheme();
@@ -21,7 +21,7 @@ export default function ParticlesBackground() {
     // Container loaded
   }, []);
   
-  if (!isClient) return null; // Hindari rendering di server
+  if (!isClient) return null; // Avoid rendering on server
   
   return (
     <Particles
@@ -30,10 +30,7 @@ export default function ParticlesBackground() {
       init={particlesInit}
       loaded={particlesLoaded}
       options={{
-        autoPlay: true,
-        background: {
-          opacity: 0,
-        },
+        fpsLimit: 120,
         particles: {
           number: {
             value: 80,
@@ -43,49 +40,66 @@ export default function ParticlesBackground() {
             }
           },
           color: {
-            value: theme === 'dark' ? '#3282B8' : '#B6B09F'
+            value: theme === 'dark' ? "#3282B8" : "#B6B09F"
           },
           shape: {
             type: "circle",
           },
           opacity: {
             value: 0.4,
-            random: true,
-            anim: {
+            random: {
+              enable: true,
+              minimumValue: 0.1,
+            },
+            animation: {
               enable: true,
               speed: 1,
-              opacity_min: 0.1,
+              minimumValue: 0.1,
               sync: false
             }
           },
           size: {
             value: 3,
-            random: true,
-            anim: {
+            random: {
+              enable: true,
+              minimumValue: 0.5
+            },
+            animation: {
               enable: true,
               speed: 2,
-              size_min: 0.1,
+              minimumValue: 0.1,
               sync: false
             }
-          },
-          move: {
-            enable: true,
-            speed: 2,
-            direction: "none",
-            random: true,
-            straight: false,
-            outModes: "out",
           },
           links: {
             enable: true,
             distance: 150,
-            color: theme === 'dark' ? '#10b981' : '#B6B09F',
+            color: theme === 'dark' ? "#3282B8" : "#B6B09F",
             opacity: 0.3,
-            width: 1
+            width: 1,
+            triangles: {
+              enable: false,
+              frequency: 0.01
+            }
           },
+          move: {
+            enable: true,
+            speed: 1.5,
+            direction: "none",
+            random: true,
+            straight: false,
+            outModes: {
+              default: "out",
+            },
+            attract: {
+              enable: true,
+              rotateX: 600,
+              rotateY: 1200
+            }
+          }
         },
         interactivity: {
-          detectsOn: "window",
+          detect_on: "canvas",
           events: {
             onHover: {
               enable: true,
@@ -99,17 +113,36 @@ export default function ParticlesBackground() {
           },
           modes: {
             grab: {
-              distance: 140,
+              distance: 180,
               links: {
-                opacity: 0.8
+                opacity: 0.8,
+                color: theme === 'dark' ? "#10b981" : "#059669"
               }
             },
             push: {
-              quantity: 3
+              particles_nb: 3
+            },
+            bubble: {
+              distance: 200,
+              size: 5,
+              duration: 2,
+              opacity: 0.8
             }
           }
         },
-        detectRetina: true
+        detectRetina: true,
+        responsive: [
+          {
+            maxWidth: 768,
+            options: {
+              particles: {
+                number: {
+                  value: 40
+                }
+              }
+            }
+          }
+        ]
       }}
     />
   );

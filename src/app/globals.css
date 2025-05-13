@@ -4,57 +4,126 @@
 
 :root {
   /* Base variables that apply to both themes */
-  --theme-transition: all 0.3s ease;
+  --theme-transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  
+  /* Animation durations */
+  --animation-slow: 1.5s;
+  --animation-medium: 0.8s;
+  --animation-fast: 0.4s;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  
+  /* Border radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+  --radius-full: 9999px;
 }
 
 /* Dark theme (default) */
 .dark {
+  /* Primary colors */
   --primary-color: #3282B8;
   --primary-light: #BBE1FA;
   --primary-dark: #0F4C75;
+  
+  /* Secondary colors */
   --secondary-color: #10b981;
   --secondary-light: #4ece8b;
   --secondary-dark: #27ae60;
+  
+  /* Accent colors */
   --accent-color: #8b5cf6;
   --accent-light: #ce93d8;
   --accent-dark: #8e44ad;
+  
+  /* Signal colors */
   --warning-color: #f39c12;
   --danger-color: #e74c3c;
-  --text-primary: #BBE1FA;
-  --text-secondary: #0F4C75;
-  --text-light: #3282B8;
-  --bg-primary: #1B262C;
-  --bg-secondary: #0F4C75;
-  --bg-accent: #3282B8;
-  --border-color: rgba(255, 255, 255, 0.1);
-  --card-bg: rgba(15, 76, 117, 0.7);
+  --success-color: #2ecc71;
+  --info-color: #3498db;
+  
+  /* Text colors */
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-tertiary: #64748b;
+  --text-hint: rgba(148, 163, 184, 0.5);
+  
+  /* Background colors */
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+  --bg-accent: #0c4a6e;
+  
+  /* UI element colors */
+  --border-color: rgba(148, 163, 184, 0.2);
+  --card-bg: rgba(15, 23, 42, 0.7);
+  --navbar-bg: rgba(15, 23, 42, 0.8);
   --shadow-color: rgba(0, 0, 0, 0.3);
+  
+  /* Gradient colors */
+  --gradient-primary: linear-gradient(to right, #3282B8, #0F4C75);
+  --gradient-secondary: linear-gradient(to right, #10b981, #0d9488);
+  --gradient-accent: linear-gradient(to right, #8b5cf6, #6366f1);
+  --gradient-cta: linear-gradient(to right, #3282B8, #10b981);
 }
 
 /* Light theme */
 .light {
-  --primary-color: #B6B09F;
-  --primary-light: #EAE4D5;
-  --primary-dark: #8A8574;
+  /* Primary colors */
+  --primary-color: #0369a1;
+  --primary-light: #0ea5e9;
+  --primary-dark: #0c4a6e;
+  
+  /* Secondary colors */
   --secondary-color: #10b981;
   --secondary-light: #4ece8b;
-  --secondary-dark: #27ae60;
+  --secondary-dark: #047857;
+  
+  /* Accent colors */
   --accent-color: #8b5cf6;
-  --accent-light: #ce93d8;
-  --accent-dark: #8e44ad;
-  --text-primary: #000000;
-  --text-secondary: #64748b;
-  --text-light: #94a3b8;
-  --bg-primary: #F2F2F2;
-  --bg-secondary: #EAE4D5;
-  --bg-accent: #B6B09F;
-  --border-color: #e0e0e0;
-  --card-bg: #ffffff;
+  --accent-light: #a78bfa;
+  --accent-dark: #7c3aed;
+  
+  /* Signal colors */
+  --warning-color: #f59e0b;
+  --danger-color: #ef4444;
+  --success-color: #10b981;
+  --info-color: #0ea5e9;
+  
+  /* Text colors */
+  --text-primary: #1e293b;
+  --text-secondary: #475569;
+  --text-tertiary: #64748b;
+  --text-hint: rgba(100, 116, 139, 0.5);
+  
+  /* Background colors */
+  --bg-primary: #f8fafc;
+  --bg-secondary: #f1f5f9;
+  --bg-tertiary: #e2e8f0;
+  --bg-accent: #e0f2fe;
+  
+  /* UI element colors */
+  --border-color: rgba(100, 116, 139, 0.2);
+  --card-bg: rgba(255, 255, 255, 0.8);
+  --navbar-bg: rgba(255, 255, 255, 0.8);
   --shadow-color: rgba(0, 0, 0, 0.1);
+  
+  /* Gradient colors */
+  --gradient-primary: linear-gradient(to right, #0369a1, #0284c7);
+  --gradient-secondary: linear-gradient(to right, #10b981, #059669);
+  --gradient-accent: linear-gradient(to right, #8b5cf6, #a78bfa);
+  --gradient-cta: linear-gradient(to right, #0369a1, #10b981);
 }
 
 /* Apply transition to specific properties for smooth theme switching */
-html, html * {
+*, *::before, *::after {
   transition: var(--theme-transition);
 }
 
@@ -68,10 +137,12 @@ html, html * {
   html {
     scroll-behavior: smooth;
     font-size: 16px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) var(--bg-secondary);
   }
   
   body {
-    font-family: var(--font-primary);
+    font-family: var(--font-inter), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     color: var(--text-primary);
     background-color: var(--bg-primary);
     overflow-x: hidden;
@@ -120,6 +191,26 @@ html, html * {
   a:hover {
     color: var(--primary-light);
   }
+  
+  /* Custom scrollbar for WebKit browsers */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+    border-radius: 20px;
+  }
+  
+  ::selection {
+    background-color: var(--primary-color);
+    color: white;
+  }
 }
 
 @layer components {
@@ -139,6 +230,7 @@ html, html * {
     @apply w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-6 rounded-full;
   }
   
+  /* Buttons */
   .btn {
     @apply inline-flex items-center justify-center px-6 py-3 rounded-full font-semibold transition-all duration-300 text-center whitespace-nowrap;
   }
@@ -147,42 +239,95 @@ html, html * {
     @apply bg-gradient-to-r from-primary to-primary-dark text-white shadow-md hover:-translate-y-1 hover:shadow-lg;
   }
   
+  .btn-secondary {
+    @apply bg-gradient-to-r from-secondary to-secondary-dark text-white shadow-md hover:-translate-y-1 hover:shadow-lg;
+  }
+  
   .btn-outline {
     @apply bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-white hover:-translate-y-1;
+  }
+  
+  .btn-accent {
+    @apply bg-gradient-to-r from-accent to-accent-dark text-white shadow-md hover:-translate-y-1 hover:shadow-lg;
   }
   
   .btn-sm {
     @apply px-4 py-2 text-sm;
   }
+  
+  .btn-lg {
+    @apply px-8 py-4 text-lg;
+  }
 
+  /* Cards */
   .card {
-    background-color: var(--bg-secondary);
-    backdrop-filter: blur(8px);
-    border-radius: 0.75rem; /* xl */
-    overflow: hidden;
-    box-shadow: 0 10px 25px var(--shadow-color);
-    border: 1px solid var(--border-color);
-    transition: all 0.3s ease;
+    @apply bg-card-bg backdrop-filter backdrop-blur-md rounded-xl border border-border-color shadow-lg overflow-hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
 
   .card-hover {
     @apply hover:-translate-y-2 hover:shadow-xl;
   }
   
+  .card-glass {
+    @apply bg-opacity-20 backdrop-filter backdrop-blur-lg border border-white/10;
+  }
+  
+  /* Text Styling */
   .text-gradient {
     @apply bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent;
   }
   
+  .text-gradient-accent {
+    @apply bg-gradient-to-r from-accent to-secondary bg-clip-text text-transparent;
+  }
+  
+  /* Layout */
   .section-padding {
     @apply py-20;
   }
   
   .glass-effect {
-    @apply bg-opacity-20 backdrop-blur-lg border border-white/10 shadow-xl;
+    @apply bg-opacity-20 backdrop-filter backdrop-blur-lg border border-white/10 shadow-xl;
   }
   
   .hover-lift {
     @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-lg;
+  }
+  
+  /* Navigation */
+  .nav-link {
+    @apply relative px-2 py-1 text-text-primary hover:text-primary transition-colors duration-300;
+  }
+  
+  .nav-link::after {
+    content: '';
+    @apply absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300;
+  }
+  
+  .nav-link:hover::after, .nav-link.active::after {
+    @apply w-full;
+  }
+  
+  /* Progress bars */
+  .progress-bar {
+    @apply h-2 bg-bg-tertiary rounded-full overflow-hidden;
+  }
+  
+  .progress-bar-fill {
+    @apply h-full rounded-full transition-all duration-1000;
+  }
+  
+  .progress-bar-fill-primary {
+    @apply bg-gradient-to-r from-primary to-primary-light;
+  }
+  
+  .progress-bar-fill-secondary {
+    @apply bg-gradient-to-r from-secondary to-secondary-light;
+  }
+  
+  .progress-bar-fill-accent {
+    @apply bg-gradient-to-r from-accent to-accent-light;
   }
 }
 
@@ -216,6 +361,51 @@ html, html * {
   }
 }
 
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 .animate-float {
   animation: float 4s ease-in-out infinite;
 }
@@ -228,12 +418,29 @@ html, html * {
   animation: fadeInUp 0.8s forwards;
 }
 
+.animate-fade-in-left {
+  animation: fadeInLeft 0.8s forwards;
+}
+
+.animate-fade-in-right {
+  animation: fadeInRight 0.8s forwards;
+}
+
+.animate-zoom-in {
+  animation: zoomIn 0.8s forwards;
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradientShift 8s ease infinite;
+}
+
 /* Animasi untuk tombol download CV */
 .animate-pulse-once {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) 1;
 }
 
-/* Style untuk tooltip */
+/* Tooltip Styles */
 .tooltip {
   position: relative;
 }
@@ -243,9 +450,9 @@ html, html * {
   position: absolute;
   bottom: 100%;
   left: 50%;
-  transform: translateX(-50%);
-  padding: 0.5rem;
-  border-radius: 0.25rem;
+  transform: translateX(-50%) scale(0.9);
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-md);
   background-color: var(--bg-secondary);
   color: var(--text-primary);
   font-size: 0.75rem;
@@ -253,26 +460,29 @@ html, html * {
   opacity: 0;
   visibility: hidden;
   transition: all 0.2s ease;
+  z-index: 10;
+  box-shadow: var(--shadow-md);
+  pointer-events: none;
 }
 
 .tooltip:hover:before {
   opacity: 1;
   visibility: visible;
   bottom: calc(100% + 5px);
+  transform: translateX(-50%) scale(1);
 }
 
-/* Shadow glow untuk elemen tertentu */
+/* Shadow effects */
 .shadow-glow {
-  box-shadow: 0 0 15px rgba(50, 130, 184, 0.3);
+  box-shadow: 0 0 15px rgba(var(--primary-color), 0.3);
 }
 
-/* Shadow hover untuk card */
 .shadow-hover {
   transition: box-shadow 0.3s ease;
 }
 
 .shadow-hover:hover {
-  box-shadow: 0 10px 25px rgba(50, 130, 184, 0.15);
+  box-shadow: 0 10px 25px rgba(var(--primary-color), 0.15);
 }
 
 /* Utility Classes */
@@ -287,19 +497,63 @@ html, html * {
   background-size: 30px 30px;
 }
 
+.background-dots {
+  background-image: radial-gradient(var(--text-secondary) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
 .text-shadow {
   text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
-.custom-scrollbar::-webkit-scrollbar {
-  width: 5px;
+/* Parallax Effects */
+.parallax-wrapper {
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  perspective: 10px;
 }
 
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: var(--bg-secondary);
+.parallax-group {
+  position: relative;
+  height: 100vh;
+  transform-style: preserve-3d;
 }
 
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: var(--primary-color);
-  border-radius: 20px;
+.parallax-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.parallax-layer-back {
+  transform: translateZ(-10px) scale(2);
+}
+
+.parallax-layer-mid {
+  transform: translateZ(-5px) scale(1.5);
+}
+
+.parallax-layer-front {
+  transform: translateZ(0);
+}
+
+/* Progress Indicators */
+.progress-indicator {
+  @apply flex justify-center gap-2 my-4;
+}
+
+.progress-dot {
+  @apply w-2 h-2 rounded-full bg-text-tertiary transition-all duration-300;
+}
+
+.progress-dot.active {
+  @apply w-4 bg-primary;
+}
+
+/* Loader animation */
+.loader {
+  @apply w-10 h-10 border-4 border-primary-light rounded-full border-t-transparent animate-spin;
 }
