@@ -3,10 +3,15 @@
 @tailwind utilities;
 
 :root {
-  /* Colors - Light Theme */
-  --primary-color: #2563eb;
-  --primary-light: #64b5f6;
-  --primary-dark: #2980b9;
+  /* Base variables that apply to both themes */
+  --theme-transition: all 0.3s ease;
+}
+
+/* Dark theme (default) */
+.dark {
+  --primary-color: #3282B8;
+  --primary-light: #BBE1FA;
+  --primary-dark: #0F4C75;
   --secondary-color: #10b981;
   --secondary-light: #4ece8b;
   --secondary-dark: #27ae60;
@@ -15,27 +20,48 @@
   --accent-dark: #8e44ad;
   --warning-color: #f39c12;
   --danger-color: #e74c3c;
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --text-light: #bdc3c7;
-  --bg-primary: #0f172a;
-  --bg-secondary: #1e293b;
-  --bg-accent: #334155;
+  --text-primary: #BBE1FA;
+  --text-secondary: #0F4C75;
+  --text-light: #3282B8;
+  --bg-primary: #1B262C;
+  --bg-secondary: #0F4C75;
+  --bg-accent: #3282B8;
   --border-color: rgba(255, 255, 255, 0.1);
-  --card-bg: rgba(30, 41, 59, 0.7);
+  --card-bg: rgba(15, 76, 117, 0.7);
   --shadow-color: rgba(0, 0, 0, 0.3);
 }
 
+/* Light theme */
 .light {
-  --text-primary: #0f172a;
+  --primary-color: #B6B09F;
+  --primary-light: #EAE4D5;
+  --primary-dark: #8A8574;
+  --secondary-color: #10b981;
+  --secondary-light: #4ece8b;
+  --secondary-dark: #27ae60;
+  --accent-color: #8b5cf6;
+  --accent-light: #ce93d8;
+  --accent-dark: #8e44ad;
+  --text-primary: #000000;
   --text-secondary: #64748b;
   --text-light: #94a3b8;
-  --bg-primary: #ffffff;
-  --bg-secondary: #f1f5f9;
-  --bg-accent: #e2e8f0;
+  --bg-primary: #F2F2F2;
+  --bg-secondary: #EAE4D5;
+  --bg-accent: #B6B09F;
   --border-color: #e0e0e0;
   --card-bg: #ffffff;
   --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Apply transition to specific properties for smooth theme switching */
+html, html * {
+  transition: var(--theme-transition);
+}
+
+/* Prevent transitions on specific elements where they might cause issues */
+.no-transition, 
+.no-transition * {
+  transition: none !important;
 }
 
 @layer base {
@@ -50,7 +76,7 @@
     background-color: var(--bg-primary);
     overflow-x: hidden;
     background-image: 
-      radial-gradient(circle at 15% 40%, rgba(59, 130, 246, 0.08) 0%, transparent 30%),
+      radial-gradient(circle at 15% 40%, rgba(50, 130, 184, 0.08) 0%, transparent 30%),
       radial-gradient(circle at 85% 20%, rgba(16, 185, 129, 0.08) 0%, transparent 30%);
     background-attachment: fixed;
   }
@@ -134,7 +160,7 @@
     backdrop-filter: blur(8px);
     border-radius: 0.75rem; /* xl */
     overflow: hidden;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 25px var(--shadow-color);
     border: 1px solid var(--border-color);
     transition: all 0.3s ease;
   }
@@ -195,11 +221,58 @@
 }
 
 .animate-pulse-slow {
-  animation: pulse a3s infinite;
+  animation: pulse 3s infinite;
 }
 
 .animate-fade-in-up {
   animation: fadeInUp 0.8s forwards;
+}
+
+/* Animasi untuk tombol download CV */
+.animate-pulse-once {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) 1;
+}
+
+/* Style untuk tooltip */
+.tooltip {
+  position: relative;
+}
+
+.tooltip:before {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+}
+
+.tooltip:hover:before {
+  opacity: 1;
+  visibility: visible;
+  bottom: calc(100% + 5px);
+}
+
+/* Shadow glow untuk elemen tertentu */
+.shadow-glow {
+  box-shadow: 0 0 15px rgba(50, 130, 184, 0.3);
+}
+
+/* Shadow hover untuk card */
+.shadow-hover {
+  transition: box-shadow 0.3s ease;
+}
+
+.shadow-hover:hover {
+  box-shadow: 0 10px 25px rgba(50, 130, 184, 0.15);
 }
 
 /* Utility Classes */

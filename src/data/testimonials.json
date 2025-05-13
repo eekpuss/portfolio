@@ -1,0 +1,48 @@
+{
+  "testimonials": [
+    {
+      "id": 1,
+      "name": "Dr. Sarah Chen",
+      "role": "Pharmaceutical QA Director",
+      "company": "Medion Group",
+      "image": "/images/testimonials/testimonial-1.jpg",
+      "text": "Arief's work combining data analysis with QA expertise transformed our manufacturing processes. His predictive maintenance models delivered remarkable results, increasing uptime and saving significant costs.",
+      "industry": "Pharmaceutical"
+    },
+    {
+      "id": 2,
+      "name": "Michael Rodriguez",
+      "role": "Data Science Team Lead",
+      "company": "Tech Innovations",
+      "image": "/images/testimonials/testimonial-2.jpg",
+      "text": "Working with Arief on machine learning projects was exceptional. His ability to translate complex data into actionable insights made a significant impact. The YOLO-based computer vision system he built exceeded our expectations.",
+      "industry": "Technology"
+    },
+    {
+      "id": 3,
+      "name": "Anita Wijaya",
+      "role": "Operations Manager",
+      "company": "PT Nusa Indah",
+      "image": "/images/testimonials/testimonial-3.jpg",
+      "text": "As a freelance consultant, Arief helped us analyze our business data and create visualizations that finally made sense of our sales patterns. His recommendations led to a 20% increase in our targeted marketing effectiveness.",
+      "industry": "Retail"
+    },
+    {
+      "id": 4,
+      "name": "Prof. Bambang Sutrisno",
+      "role": "Department Chair",
+      "company": "Universitas Ahmad Dahlan",
+      "image": "/images/testimonials/testimonial-4.jpg",
+      "text": "Arief demonstrated exceptional analytical skills during his studies. His thesis work showed a remarkable ability to apply statistical methods to real-world manufacturing problems. I'm not surprised by his professional success.",
+      "industry": "Education"
+    }
+  ],
+  "industries": [
+    "Pharmaceutical",
+    "Manufacturing",
+    "Technology",
+    "Retail",
+    "Education",
+    "F&B"
+  ]
+}

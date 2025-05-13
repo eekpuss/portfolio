@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import Particles from 'react-particles';
-import { loadSlim } from "tsparticles-slim"; // Gunakan tsparticles-slim sebagai alternatif
+import { loadSlim } from "tsparticles-slim";
 import { useTheme } from '@/context/ThemeContext';
 
 export default function ParticlesBackground() {
@@ -43,7 +43,7 @@ export default function ParticlesBackground() {
             }
           },
           color: {
-            value: theme === 'dark' ? '#2563eb' : '#2563eb'
+            value: theme === 'dark' ? '#3282B8' : '#B6B09F'
           },
           shape: {
             type: "circle",
@@ -79,7 +79,7 @@ export default function ParticlesBackground() {
           links: {
             enable: true,
             distance: 150,
-            color: theme === 'dark' ? '#10b981' : '#10b981',
+            color: theme === 'dark' ? '#10b981' : '#B6B09F',
             opacity: 0.3,
             width: 1
           },

@@ -10,19 +10,19 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#2563eb',
-          light: '#64b5f6',
-          dark: '#2980b9',
+          DEFAULT: 'var(--primary-color)',
+          light: 'var(--primary-light)',
+          dark: 'var(--primary-dark)',
         },
         secondary: {
-          DEFAULT: '#10b981',
-          light: '#4ece8b',
-          dark: '#27ae60',
+          DEFAULT: 'var(--secondary-color)',
+          light: 'var(--secondary-light)',
+          dark: 'var(--secondary-dark)',
         },
         accent: {
-          DEFAULT: '#8b5cf6',
-          light: '#ce93d8',
-          dark: '#8e44ad',
+          DEFAULT: 'var(--accent-color)',
+          light: 'var(--accent-light)',
+          dark: 'var(--accent-dark)',
         },
         background: {
           DEFAULT: 'var(--bg-primary)',
@@ -64,7 +64,7 @@ module.exports = {
       },
       boxShadow: {
         'inner-light': 'inset 0 2px 4px 0 rgba(255, 255, 255, 0.05)',
-        'glow': '0 0 20px rgba(37, 99, 235, 0.5)',
+        'glow': '0 0 20px rgba(var(--primary-color), 0.5)',
       },
     },
   },

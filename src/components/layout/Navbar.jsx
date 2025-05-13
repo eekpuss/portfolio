@@ -2,9 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useTheme } from '@/context/ThemeContext';
 import { usePathname } from 'next/navigation';
 import { FaSun, FaMoon, FaBars, FaTimes } from 'react-icons/fa';
+import DownloadCVButton from '@/components/common/DownloadCVButton';
+import { useTheme } from '@/context/ThemeContext';
 
 export default function Navbar() {
   const { theme, toggleTheme } = useTheme();
@@ -28,7 +29,7 @@ export default function Navbar() {
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      scrolled ? 'bg-background shadow-md' : 'bg-transparent'
+      scrolled ? 'bg-background/90 backdrop-blur-md shadow-md' : 'bg-transparent'
     }`}>
       <div className="container mx-auto px-6 flex justify-between items-center h-20">
         <Link href="/" className="text-3xl font-bold">
@@ -82,10 +83,25 @@ export default function Navbar() {
               <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-primary to-secondary"></span>
             )}
           </Link>
+          
+          {/* CV Download Button - Desktop */}
+          <DownloadCVButton 
+            variant="secondary" 
+            size="sm" 
+            className="ml-4 hidden lg:inline-flex"
+          />
         </div>
         
-        {/* Toggle Theme Button */}
+        {/* Right Side Controls */}
         <div className="flex items-center">
+          {/* CV Download Button - Tablet */}
+          <DownloadCVButton 
+            variant="ghost" 
+            size="sm" 
+            className="mr-4 hidden md:inline-flex lg:hidden"
+          />
+          
+          {/* Theme Toggle Button */}
           <button 
             onClick={toggleTheme} 
             className="p-2 rounded-full bg-background-accent text-text-primary hover:bg-primary hover:text-white transition-all"
@@ -137,6 +153,11 @@ export default function Navbar() {
             >
               Contact
             </Link>
+            
+            {/* CV Download Button - Mobile */}
+            <div className="pt-2">
+              <DownloadCVButton variant="primary" size="md" className="w-full justify-center" />
+            </div>
           </div>
         </div>
       )}
