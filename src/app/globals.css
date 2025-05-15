@@ -261,7 +261,7 @@
 
   /* Cards */
   .card {
-    @apply bg-card-bg backdrop-filter backdrop-blur-md rounded-xl border border-border-color shadow-lg overflow-hidden;
+    @apply bg-card-bg backdrop-filter backdrop-blur-md rounded-xl border border-border shadow-lg overflow-hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
 
@@ -311,7 +311,7 @@
   
   /* Progress bars */
   .progress-bar {
-    @apply h-2 bg-bg-tertiary rounded-full overflow-hidden;
+    @apply h-2 bg-background-tertiary rounded-full overflow-hidden;
   }
   
   .progress-bar-fill {

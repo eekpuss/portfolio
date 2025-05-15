@@ -27,15 +27,27 @@ module.exports = {
         background: {
           DEFAULT: 'var(--bg-primary)',
           secondary: 'var(--bg-secondary)',
+          tertiary: 'var(--bg-tertiary)',
           accent: 'var(--bg-accent)',
         },
         text: {
           primary: 'var(--text-primary)',
           secondary: 'var(--text-secondary)',
+          tertiary: 'var(--text-tertiary)',
           light: 'var(--text-light)',
         },
         border: {
           DEFAULT: 'var(--border-color)',
+          color: 'var(--border-color)',
+        },
+        card: {
+          bg: 'var(--card-bg)',
+        },
+        bg: {
+          primary: 'var(--bg-primary)',
+          secondary: 'var(--bg-secondary)',
+          tertiary: 'var(--bg-tertiary)',
+          accent: 'var(--bg-accent)',
         },
       },
       fontFamily: {
